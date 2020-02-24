@@ -1,0 +1,43 @@
+#contenu{
+    width: 500px;
+    height: 250px;
+    border: 5px solid black;
+    margin-bottom: 10px !important; 
+    overflow:scroll;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 510px;   
+}
+#inscription{
+    margin: 10px 0;
+}
+#message{
+    margin-bottom: 10px;
+}
+.chat{
+    border: 5px solid black;
+    width: 550px;
+    height: 550px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user{
+    border: 5px solid black;
+    padding: 10px;
+    width: 275px;
+    margin-bottom: 10px;
+
+}
+#user{
+    width: 275px;
+}
+#envoyer{
+    width: 279px;
+    margin-top: 10px;
+}
