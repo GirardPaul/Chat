@@ -4,8 +4,11 @@ session_start();
 if(empty($_SESSION['utilisateur']))
 {
     header("location:connexion.php");
+
 }
 else{
+
+    setcookie("user", $_SESSION['utilisateur']);
     ?>
  <!DOCTYPE html>
 <html lang="en" class="full-height">
@@ -56,9 +59,7 @@ a{
     color: black !important;
 }
 textarea{
-    
-    border-color: black !important;
-    border: 3px solid black !important;
+
     padding: 10px;
 }
 
@@ -72,7 +73,22 @@ label{
     border-right: 2px solid  #f0373a;
     border-bottom: 2px solid  #f0373a;
 }
+.contenu{
+    width: 500px !important;
+    height: 250px !important;
+   border: none !important;
+    margin-bottom: 10px !important; 
+    overflow-y :scroll !important;
+    overflow-x :hidden !important;
+    padding: 10px !important;
+}
+.txt-left{
+    text-align: left !important;
+}
+.txt-right{
+    text-align: right !important;
 
+}
 
 </style>
     <title>Chat</title>
@@ -80,21 +96,21 @@ label{
 
 <body>
 
-        <a href="logout.php" title="Deconnexion"><i class="fas fa-times fa-2x"></i></a>
+        <a id="test" onclick="remove()" href="logout.php" title="Deconnexion"><i class="fas fa-times fa-2x"></i></a>
 
 
    <div class="container centrer">
 
    <div class="row flex-column justify-content-center align-items-center">
 
-        <div id="contenu">
+        <div class="contenu">
 
         </div>
 
 
         <form action="" method="POST">
 
-            <textarea name="message" id="message" placeholder="Message" cols="30" rows="10"></textarea>
+            <textarea name="message" class="form-control z-depth-1" id="message" placeholder="Message" cols="30" rows="10"></textarea>
 
             <button type="button" name="submit" id="submit" class="btn btn-outline-danger waves-effect">Envoyer</button>
 <!-- 
@@ -109,16 +125,19 @@ label{
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
     <script>
     
-    
+   
+
+
 
 function load(){
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("contenu").innerHTML =
+    document.querySelector(".contenu").innerHTML =
     this.responseText;
   }
 };
@@ -133,8 +152,32 @@ window.onload = function(){
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("contenu").innerHTML =
+    document.querySelector(".contenu").innerHTML =
     this.responseText;
+
+    
+
+    let text = document.querySelectorAll(".txt-left");
+    let alltxt = Array.from(text);
+    let test = document.getElementById('test');
+    let user = Cookies.get('user');
+  
+    
+
+    alltxt.forEach(element => {
+
+
+        let x = element.textContent;
+    
+
+        if(x.includes(user) == false){
+            element.classList.toggle("txt-right");
+        }
+        
+        
+
+   
+    });
    
   }
 };
@@ -158,6 +201,9 @@ if(message != ""){ // on vérifie que les variables ne sont pas vides
 load()
 });
 
+function remove(){
+    document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+}
 
 </script>
 

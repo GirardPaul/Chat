@@ -13,7 +13,7 @@ $exe = $bdd->query($req);
 
 while($list=$exe->fetch()){
 
-   echo '<p>'.$list['user'].' : '.$list['message'].'</p>';
+   echo '<p class="txt-left">'.$list['user'].' : '.$list['message'].'</p>';
 }
 
 ?>
