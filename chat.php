@@ -25,7 +25,11 @@ if(!empty($_POST['message'])){
 
     $message = $_POST['message'];
 
-    $req_chat = "INSERT INTO messages (id_user, message) VALUES ('$pseudo', '$message')";
+    $time = date("H:i:s");
+    $date = date("d/m/Y");
+
+
+    $req_chat = "INSERT INTO messages (id_user, message, date, time) VALUES ('$pseudo', '$message', '$date', '$time')";
 
     $req = $bdd->query($req_chat);
 }
