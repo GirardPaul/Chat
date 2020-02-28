@@ -23,7 +23,7 @@ if(!empty($_POST['message'])){
     
     
 
-    $message = $_POST['message'];
+    $message = addslashes($_POST['message']);
 
     $time = date("H:i:s");
     $date = date("d/m/Y");

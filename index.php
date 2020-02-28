@@ -65,13 +65,35 @@ background-color: #F7BB3A;
 .buttons .button.maximize {
 background-color: #18AE1A;
 }
-    </style>
 
+.far {
+    font-family: "Font Awesome 5 Free" !important;
+
+
+    font-weight: 400 !important;
+
+    -moz-osx-font-smoothing: grayscale !important;
+    -webkit-font-smoothing: antialiased !important;
+    display: inline-block !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-rendering: auto !important;
+    line-height: 1 !important;
+}
+.date{
+    font-size: 6px !important;
+}
+.txt{
+    font-size: 14px !important;
+}
+    </style>
 
     <title>Document</title>
 </head>
 
 <body>
+
+<button id="test" type="button">tttt</button>
 
     <div class="container content">
         <div class="row">
@@ -89,11 +111,11 @@ background-color: #18AE1A;
 
                         </ul>
 
-                        <form class="w-100" action="" method="POST">
+                        <form class="w-100" action="chat.php" method="POST">
                         <div class="d-flex justify-content-center align-items-center md-form">
                         <input id="message" name="message" type="text" length="10" class="form-control">
                         <label for="input-char-counter">Saisir votre message : </label>
-                        <button style="border: none; background-color: transparent; font-size: 25px;" type="button" name="submit" id="submit"><i class="far fa-paper-plane"></i></button>
+                        <button class="far fa-paper-plane" style="border: none; background-color: transparent; font-size: 25px;" type="submit" name="submit" id="submit" value=" "></button>
                         </form>
 
                         </div>
@@ -124,6 +146,8 @@ xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     document.querySelector(".chat-list").innerHTML =
     this.responseText;
+    let chat_scroll = document.querySelector('.chat-list');
+    chat_scroll.scrollBy(0, 100005000);
   }
 };
 xhttp.open("GET", "traitement.php", true);
@@ -139,6 +163,8 @@ xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     document.querySelector(".chat-list").innerHTML =
     this.responseText;
+    let chat_scroll = document.querySelector('.chat-list');
+    chat_scroll.scrollBy(0, 10005000);
  
 }};
   
@@ -149,13 +175,10 @@ xhttp.send();
 
 
 
-let submit = document.getElementById('submit');
 
-submit.addEventListener('click', send); 
-    function send(){
-
+    $('#submit').click(function(e){
+e.preventDefault();
 // on sécurise les données
-
 let message = encodeURIComponent($('#message').val());
 
 if(message != ""){ // on vérifie que les variables ne sont pas vides
@@ -166,9 +189,10 @@ if(message != ""){ // on vérifie que les variables ne sont pas vides
     });
     $('#message').val(' ');
 }
-        
-load();
-}
+load()
+});
+
+
 
 
 

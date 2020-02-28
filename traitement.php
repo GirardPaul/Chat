@@ -29,7 +29,8 @@ while($list=$exe->fetch()){
                                 <div class="chat-body">
                                     <div class="chat-message">
                                         <h5>'.$list['user'].'</h5>
-                                        <p>'.$list['message'].'</p>
+                                        <p class="txt">'.$list['message'].'</p>                                    
+                                        <p class="date">'.$list['time'].' '.$list['date'].'</p>
                                     </div>
                                 </div>
                             </li>';
@@ -40,10 +41,11 @@ while($list=$exe->fetch()){
           <img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
       </div>
       <div class="chat-body">
-          <div class="chat-message">
-              <h5>'.$list['user'].'</h5>
-              <p>'.$list['message'].'</p>
-          </div>
+      <div class="chat-message">
+      <h5>'.$list['user'].'</h5>
+      <p class="txt">'.$list['message'].'</p>                                    
+      <p class="date">'.$list['time'].' '.$list['date'].'</p>
+  </div>
       </div>
   </li>';
    }
